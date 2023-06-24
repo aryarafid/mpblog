@@ -1,0 +1,304 @@
+{
+  "page": 20,
+  "rows": 157,
+  "blogPage": 1,
+  "listLimit": 8,
+  "result": [
+    {
+      "id": 460,
+      "title": "test",
+      "imageURL": "Public/Blog-1687582918270166011.png",
+      "content": "Asdasdasd",
+      "videoURL": "",
+      "country": "Indonesia",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-24T05:01:58.000Z",
+      "updatedAt": "2023-06-24T05:01:58.000Z",
+      "UserId": 679,
+      "CategoryId": 6,
+      "User": {
+        "username": "gabahayatah",
+        "imgProfile": null
+      },
+      "Category": {
+        "id": 6,
+        "name": "Internasional"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 715,
+          "BlogId": 460,
+          "KeywordId": 19,
+          "createdAt": "2023-06-24T05:01:58.000Z",
+          "updatedAt": "2023-06-24T05:01:58.000Z",
+          "Keyword": {
+            "id": 19,
+            "name": "test",
+            "createdAt": "2023-05-26T02:40:34.000Z",
+            "updatedAt": "2023-05-26T02:40:34.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 459,
+      "title": "semangat ges",
+      "imageURL": "Public/Blog-1687581054110230062.jpeg",
+      "content": "sudah beres ges\ntinggal styling",
+      "videoURL": "",
+      "country": "bandung",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-24T04:30:54.000Z",
+      "updatedAt": "2023-06-24T04:30:54.000Z",
+      "UserId": 655,
+      "CategoryId": 7,
+      "User": {
+        "username": "tester6610",
+        "imgProfile": "Public/Avatar-655.jpeg"
+      },
+      "Category": {
+        "id": 7,
+        "name": "Fiksi"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 714,
+          "BlogId": 459,
+          "KeywordId": 128,
+          "createdAt": "2023-06-24T04:30:54.000Z",
+          "updatedAt": "2023-06-24T04:30:54.000Z",
+          "Keyword": {
+            "id": 128,
+            "name": "semangat",
+            "createdAt": "2023-06-21T15:12:19.000Z",
+            "updatedAt": "2023-06-21T15:12:19.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 457,
+      "title": "Stacey Ryan",
+      "imageURL": "Public/Blog-1687557704361445275.png",
+      "content": "Ini saya belom tidur nih, nitip beli rokok sebungkus di alfa. ",
+      "videoURL": "google.com",
+      "country": "Mengger Girang",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-23T22:01:44.000Z",
+      "updatedAt": "2023-06-23T22:01:44.000Z",
+      "UserId": 673,
+      "CategoryId": 2,
+      "User": {
+        "username": "sebuahjanjiterbentang",
+        "imgProfile": null
+      },
+      "Category": {
+        "id": 2,
+        "name": "Ekonomi"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 712,
+          "BlogId": 457,
+          "KeywordId": 242,
+          "createdAt": "2023-06-23T22:01:44.000Z",
+          "updatedAt": "2023-06-23T22:01:44.000Z",
+          "Keyword": {
+            "id": 242,
+            "name": "Until",
+            "createdAt": "2023-06-23T22:00:38.000Z",
+            "updatedAt": "2023-06-23T22:00:38.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 456,
+      "title": "Stacey Ryan",
+      "imageURL": "Public/Blog-168755766706550617.png",
+      "content": "Ini saya belom tidur nih, nitip beli rokok sebungkus di alfa. ",
+      "videoURL": "google.com",
+      "country": "Mengger Girang",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-23T22:01:07.000Z",
+      "updatedAt": "2023-06-23T22:01:07.000Z",
+      "UserId": 673,
+      "CategoryId": 2,
+      "User": {
+        "username": "sebuahjanjiterbentang",
+        "imgProfile": null
+      },
+      "Category": {
+        "id": 2,
+        "name": "Ekonomi"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 711,
+          "BlogId": 456,
+          "KeywordId": 242,
+          "createdAt": "2023-06-23T22:01:07.000Z",
+          "updatedAt": "2023-06-23T22:01:07.000Z",
+          "Keyword": {
+            "id": 242,
+            "name": "Until",
+            "createdAt": "2023-06-23T22:00:38.000Z",
+            "updatedAt": "2023-06-23T22:00:38.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 451,
+      "title": "Stacey Ryan",
+      "imageURL": "Public/Blog-1687557666287273400.png",
+      "content": "Ini saya belom tidur nih, nitip beli rokok sebungkus di alfa. ",
+      "videoURL": "google.com",
+      "country": "Mengger Girang",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-23T22:01:06.000Z",
+      "updatedAt": "2023-06-23T22:01:06.000Z",
+      "UserId": 673,
+      "CategoryId": 2,
+      "User": {
+        "username": "sebuahjanjiterbentang",
+        "imgProfile": null
+      },
+      "Category": {
+        "id": 2,
+        "name": "Ekonomi"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 706,
+          "BlogId": 451,
+          "KeywordId": 242,
+          "createdAt": "2023-06-23T22:01:06.000Z",
+          "updatedAt": "2023-06-23T22:01:06.000Z",
+          "Keyword": {
+            "id": 242,
+            "name": "Until",
+            "createdAt": "2023-06-23T22:00:38.000Z",
+            "updatedAt": "2023-06-23T22:00:38.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 452,
+      "title": "Stacey Ryan",
+      "imageURL": "Public/Blog-1687557666453274097.png",
+      "content": "Ini saya belom tidur nih, nitip beli rokok sebungkus di alfa. ",
+      "videoURL": "google.com",
+      "country": "Mengger Girang",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-23T22:01:06.000Z",
+      "updatedAt": "2023-06-23T22:01:06.000Z",
+      "UserId": 673,
+      "CategoryId": 2,
+      "User": {
+        "username": "sebuahjanjiterbentang",
+        "imgProfile": null
+      },
+      "Category": {
+        "id": 2,
+        "name": "Ekonomi"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 707,
+          "BlogId": 452,
+          "KeywordId": 242,
+          "createdAt": "2023-06-23T22:01:06.000Z",
+          "updatedAt": "2023-06-23T22:01:06.000Z",
+          "Keyword": {
+            "id": 242,
+            "name": "Until",
+            "createdAt": "2023-06-23T22:00:38.000Z",
+            "updatedAt": "2023-06-23T22:00:38.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 450,
+      "title": "Stacey Ryan",
+      "imageURL": "Public/Blog-168755766612351424.png",
+      "content": "Ini saya belom tidur nih, nitip beli rokok sebungkus di alfa. ",
+      "videoURL": "google.com",
+      "country": "Mengger Girang",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-23T22:01:06.000Z",
+      "updatedAt": "2023-06-23T22:01:06.000Z",
+      "UserId": 673,
+      "CategoryId": 2,
+      "User": {
+        "username": "sebuahjanjiterbentang",
+        "imgProfile": null
+      },
+      "Category": {
+        "id": 2,
+        "name": "Ekonomi"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 705,
+          "BlogId": 450,
+          "KeywordId": 242,
+          "createdAt": "2023-06-23T22:01:06.000Z",
+          "updatedAt": "2023-06-23T22:01:06.000Z",
+          "Keyword": {
+            "id": 242,
+            "name": "Until",
+            "createdAt": "2023-06-23T22:00:38.000Z",
+            "updatedAt": "2023-06-23T22:00:38.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": 454,
+      "title": "Stacey Ryan",
+      "imageURL": "Public/Blog-1687557666768802214.png",
+      "content": "Ini saya belom tidur nih, nitip beli rokok sebungkus di alfa. ",
+      "videoURL": "google.com",
+      "country": "Mengger Girang",
+      "isPublished": false,
+      "isDeleted": false,
+      "createdAt": "2023-06-23T22:01:06.000Z",
+      "updatedAt": "2023-06-23T22:01:06.000Z",
+      "UserId": 673,
+      "CategoryId": 2,
+      "User": {
+        "username": "sebuahjanjiterbentang",
+        "imgProfile": null
+      },
+      "Category": {
+        "id": 2,
+        "name": "Ekonomi"
+      },
+      "Blog_Keywords": [
+        {
+          "id": 709,
+          "BlogId": 454,
+          "KeywordId": 242,
+          "createdAt": "2023-06-23T22:01:06.000Z",
+          "updatedAt": "2023-06-23T22:01:06.000Z",
+          "Keyword": {
+            "id": 242,
+            "name": "Until",
+            "createdAt": "2023-06-23T22:00:38.000Z",
+            "updatedAt": "2023-06-23T22:00:38.000Z"
+          }
+        }
+      ]
+    }
+  ]
+}

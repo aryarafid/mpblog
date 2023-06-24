@@ -6,7 +6,9 @@ import Footer from '../../components/Footer'
 import { Avatar, Card, CardBody, Center, Container, Divider, Tab, TabList, TabPanel, TabPanels, Tabs, Text, WrapItem } from '@chakra-ui/react'
 // import PopularArticles from '../components/blog/PopularArticles'
 // import ProfileView from '../components/ProfileView'
-import EditProfile from '../../components/profile/EditProfile'
+// import EditProfile from '../../components/profile/EditProfile'
+import EditProfileButton from '../../components/profile/EditProfileButton'
+import ChangePasswordButton from '../../components/profile/ChangePasswordButton'
 
 const ProfilePage = () => {
     return (
@@ -21,7 +23,9 @@ const ProfilePage = () => {
                 <Avatar size='2xl' name='Segun Adebayo' src='https://bit.ly/sage-adebayo' marginBottom={5} />
                 {/* </WrapItem> */}
                 <Text fontSize='4xl' marginBottom={5}> Sosa </Text>
-                <EditProfile marginBottom={5}></EditProfile>
+                {/* <EditProfile marginBottom={5}></EditProfile> */}
+                <EditProfileButton marginBottom={5}></EditProfileButton>
+                <ChangePasswordButton marginTop={5}></ChangePasswordButton>
                 <Card>
                     {/* <Center> */}
                     <CardBody>

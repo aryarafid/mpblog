@@ -1,37 +1,58 @@
-import React from 'react'
-import ArticleNorm from './ArticleNorm'
+// import React from 'react'
+import ArticleNorm from '../../../unused/ArticleNorm'
 import { Avatar, Card, CardBody, Center, Container, Divider, Tab, TabList, TabPanel, TabPanels, Tabs, Text, WrapItem, Heading } from '@chakra-ui/react'
+import ArticleCard from './ArticleCard'
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
 
 const PopularArticles = () => {
+    const [data, setData] = useState([]);
+
+    const fetchAllCategory = async () => {
+        try {
+            const { data } = await axios.get("https://minpro-blog.purwadhikabootcamp.com/api/blog/allCategory")
+            console.log(data);
+            setData(data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        fetchAllCategory()
+    }, [])
+
     return (
-        <div>
+        <>
             <Heading as="h2" paddingTop={'1.5em'} paddingBottom={'1em'}>
-                Artikel-Artikel Terpopuler Lain
+                Artikel-Artikel Terpopuler By Category
             </Heading>
-            <Tabs w={'80%'} m={'auto'}>
+            <Tabs m={'auto'}>
                 <TabList>
-                    <Tab>cat1</Tab>
-                    <Tab>cat2</Tab>
-                    <Tab>cat3</Tab>
+                    {data.map(iter =>
+                        <Tab key={iter.id}>{iter.name}</Tab>
+                    )
+                    }
                 </TabList>
 
                 <TabPanels>
                     <TabPanel>
-                        <ArticleNorm></ArticleNorm>
+                        {/* <ArticleNorm></ArticleNorm> */}
+                        <ArticleCard></ArticleCard>
+                    </TabPanel>
+                    <TabPanel>
+                        <ArticleCard></ArticleCard>
 
                     </TabPanel>
                     <TabPanel>
-                        <ArticleNorm></ArticleNorm>
-
-                    </TabPanel>
-                    <TabPanel>
-                        <ArticleNorm></ArticleNorm>
+                        <ArticleCard></ArticleCard>
 
                     </TabPanel>
                 </TabPanels>
             </Tabs>
 
-        </div>
+        </ >
     )
 }
 

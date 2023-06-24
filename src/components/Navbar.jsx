@@ -14,18 +14,24 @@ const Navbar = () => {
                 <HStack>
                     <Logo></Logo>
                     <Spacer></Spacer>
-                    {login === false ?
-                        <ButtonGroup>
-                            {/* <Button>Sign In</Button> */}
-                            {/* <Button>Register</Button> */}
-                            <LoginButton></LoginButton>
+                    {/* {login === false ? */}
+                    {/* <ButtonGroup> */}
+                    {/* <Button>Sign In</Button> */}
+                    {/* <Button>Register</Button> */}
+                    {/* <LoginButton></LoginButton>
                             <RegisterButton></RegisterButton>
-                        </ButtonGroup>
-                        :
-                        <ButtonGroup>
-                            <ProfileButton></ProfileButton>
-                        </ButtonGroup>
-                    }
+                        </ButtonGroup> */}
+                    {/* : */}
+                    {/* <ButtonGroup>
+                        <ProfileButton></ProfileButton>
+                    </ButtonGroup> */}
+                    {/* } */}
+                    <ButtonGroup>
+                        <ProfileButton></ProfileButton>
+                        <LoginButton></LoginButton>
+                        <RegisterButton></RegisterButton>
+                    </ButtonGroup>
+
                 </HStack>
             </Box >
         </>

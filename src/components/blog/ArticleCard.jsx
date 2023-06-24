@@ -56,10 +56,14 @@ export const ArticleCard = () => {
     return (
         <div>
             <Wrap spacing="30px" marginTop="5">
-                <WrapItem width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}>
-                    <Box w="100%">
-                        <Box borderRadius="lg" overflow="hidden">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                {/* <WrapItem width={{ base: '100%', sm: '50%', md: '50%', lg: '45%' }}> */}
+                <WrapItem width={{ base: '100%' }}>
+                    <Link textDecoration="none" _hover={{ transform: 'scale(1.05)' }}>
+                        {/* <Box w="100%"> */}
+                        <HStack spacing={10}>
+                            {/* image */}
+                            <Box borderRadius="lg" overflow="hidden">
+                                {/* <Link textDecoration="none" _hover={{ textDecoration: 'none' }}> */}
                                 <Image
                                     transform="scale(1.0)"
                                     src={
@@ -68,30 +72,38 @@ export const ArticleCard = () => {
                                     alt="some text"
                                     objectFit="contain"
                                     width="100%"
+                                    // height="50%"
                                     transition="0.3s ease-in-out"
-                                    _hover={{
-                                        transform: 'scale(1.05)',
-                                    }}
+                                // _hover={{
+                                //     transform: 'scale(1.05)',
+                                // }}
                                 />
-                            </Link>
-                        </Box>
-                        <BlogTags tags={['Engineering', 'Product']} marginTop="3" />
-                        <Heading fontSize="xl" marginTop="2">
-                            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                                Some blog title
-                            </Link>
-                        </Heading>
-                        <Text as="p" fontSize="md" marginTop="2">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500s, when an unknown printer took a galley of
-                            type and scrambled it to make a type specimen book.
-                        </Text>
-                        <BlogAuthor
-                            name="John Doe"
-                            date={new Date('2021-04-06T19:01:27Z')}
-                        />
-                    </Box>
+                                {/* </Link> */}
+                            </Box>
+
+                            {/* text */}
+                            <Box>
+                                <BlogTags tags={['Engineering']} marginTop="3" />
+                                <Heading fontSize="xl" marginTop="2">
+                                    {/* <Link textDecoration="none" _hover={{ textDecoration: 'none' }}> */}
+                                    Some blog title
+                                    {/* </Link> */}
+                                </Heading>
+                                <Text as="p" fontSize="md" marginTop="2">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry. Lorem Ipsum has been the industry's standard dummy text
+                                    ever since the 1500s, when an unknown printer took a galley of
+                                    type and scrambled it to make a type specimen book.
+                                </Text>
+                                <BlogAuthor
+                                    name="John Doe"
+                                    date={new Date('2021-04-06T19:01:27Z')}
+                                />
+                            </Box>
+                        </HStack>
+
+                        {/* </Box> */}
+                    </Link>
                 </WrapItem>
             </Wrap>
 

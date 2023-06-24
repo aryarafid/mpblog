@@ -2,19 +2,17 @@ import { Avatar, Button, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useNavigate } from "react-router-dom"
 
-export const RegisterButton = () => {
+export const ChangePasswordButton = () => {
     const navigate = useNavigate();
     return (
         <div>
-            {/* <a href='register'> */}
-            {/* <Button> */}
-            <Button onClick={() => navigate("/register")} >
-                Register
+            {/* <a href='changePassword'> */}
+            <Button onClick={() => navigate("/changePassword")} >
+                Change Password
             </Button>
-            {/* </Button> */}
             {/* </a> */}
         </div>
     )
 }
 
-export default RegisterButton
+export default ChangePasswordButton

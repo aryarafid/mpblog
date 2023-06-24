@@ -1,12 +1,14 @@
 import { Button } from '@chakra-ui/react'
 import React from 'react'
 
-const EditProfile = () => {
+const EditProfilePage = () => {
     return (
-        <div>
-            <Button> Edit Profile</Button>
-        </div>
+        <a href="editProfile">
+            <div>
+                <Button> Edit Profile</Button>
+            </div>
+        </a>
     )
 }
 
-export default EditProfile
+export default EditProfilePage
