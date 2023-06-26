@@ -48,9 +48,9 @@ const EditProfileFunction = () => {
                 <FormLabel>Email</FormLabel>
                 <Input type="email" />
             </FormControl>
-            <FormControl id="phoneNumber">
+            <FormControl id="phone">
                 <FormLabel>Phone number</FormLabel>
-                <Input type="phoneNumber" />
+                <Input type="phone" />
             </FormControl>
         </Stack>
     );

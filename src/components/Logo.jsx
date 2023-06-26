@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 const Logo = () => {
     const navigate = useNavigate();
     return (
-        <div>
+        <>
             <a href='/'>
                 {/* <Button variant='link'> */}
                 {/* <Link onClick={() => navigate()}> */}
@@ -16,7 +16,7 @@ const Logo = () => {
                 {/* </Link> */}
                 {/* </Button> */}
             </a>
-        </div>
+        </>
     )
 }
 

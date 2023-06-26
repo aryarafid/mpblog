@@ -1,5 +1,4 @@
 // import React from 'react'
-import ArticleNorm from '../../../unused/ArticleNorm'
 import { Avatar, Card, CardBody, Center, Container, Divider, Tab, TabList, TabPanel, TabPanels, Tabs, Text, WrapItem, Heading } from '@chakra-ui/react'
 import ArticleCard from './ArticleCard'
 import axios from 'axios'
@@ -26,7 +25,7 @@ const PopularArticles = () => {
     return (
         <>
             <Heading as="h2" paddingTop={'1.5em'} paddingBottom={'1em'}>
-                Artikel-Artikel Terpopuler By Category
+                Artikel Terpopuler By Category
             </Heading>
             <Tabs m={'auto'}>
                 <TabList>
@@ -47,7 +46,6 @@ const PopularArticles = () => {
                     </TabPanel>
                     <TabPanel>
                         <ArticleCard></ArticleCard>
-
                     </TabPanel>
                 </TabPanels>
             </Tabs>

@@ -19,6 +19,8 @@ import {
     Container,
     VStack,
     Card,
+    LinkBox,
+    LinkOverlay,
 } from '@chakra-ui/react';
 
 const BlogTags = (props) => {
@@ -35,12 +37,7 @@ const BlogTags = (props) => {
     );
 };
 
-// interface BlogAuthorProps {
-//     date: Date;
-//     name: string;
-// }
-
-export const BlogAuthor = (props) => {
+const BlogAuthor = (props) => {
     return (
         <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
             <Image
@@ -89,7 +86,7 @@ export default function SimpleSlider() {
                 {/* iterate image here */}
                 {data.map(iter =>
 
-                    <Link _hover={{
+                    <LinkBox _hover={{
                         transform: 'scale(1.05)'
                     }}>
                         <div>
@@ -132,9 +129,9 @@ export default function SimpleSlider() {
                                     marginTop={{ base: '3', sm: '0' }}>
                                     <BlogTags tags={[iter.Category.name]} />
                                     <Heading marginTop="1">
-                                        <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+                                        <LinkOverlay textDecoration="none" _hover={{ textDecoration: 'none' }}>
                                             {iter.title}
-                                        </Link>
+                                        </LinkOverlay>
                                     </Heading>
                                     <Text
                                         as="p"
@@ -155,7 +152,7 @@ export default function SimpleSlider() {
                             </Box>
                             {/* </Link> */}
                         </div>
-                    </Link>
+                    </LinkBox>
                 )
                 }
 

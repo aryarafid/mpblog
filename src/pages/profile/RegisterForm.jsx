@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { Form, useFormik } from 'formik';
 import {
     FormControl,
     FormLabel,
@@ -16,6 +16,7 @@ import {
     HStack,
     Text,
     Spacer,
+    useToast,
 } from '@chakra-ui/react'
 import {
     Link,
@@ -23,18 +24,74 @@ import {
     Route,
     useNavigate,
 } from 'react-router-dom';
+import axios from "axios";
+import * as Yup from "yup";
 
 const RegisterForm = () => {
-    // Pass the useFormik() hook initial form values and a submit function that will
-    // be called when the form is submitted
+    const toast = useToast();
     const navigate = useNavigate();
+
+    const register = async (values) => {
+        try {
+            const res = await axios.post(
+                "https://minpro-blog.purwadhikabootcamp.com/api/auth/",
+                {
+                    username: values.username,
+                    email: values.email,
+                    phone: values.phone,
+                    password: values.password,
+                    confirmPassword: values.confirmPassword,
+                    FE_URL: "http://localhost:3000"
+                }
+            );
+            toast({
+                title: "Register Success",
+                status: "success",
+                duration: "2000",
+                isClosable: true,
+            });
+        } catch (err) {
+            toast({
+                title: `Please try again. ${err.response.data}`,
+                status: "error",
+                duration: "2000",
+                isClosable: true,
+            });
+            console.log(err)
+        }
+    };
+
+    const SignUpSchema = Yup.object().shape({
+        username: Yup.string().required("Username is required"),
+        email: Yup.string()
+            .email("Invalid email address format")
+            .required("Email is required"),
+        phone: Yup.string()
+            .matches(/^[0-9]+$/, "Phone number must contain only digits")
+            .required("Phone number is required"),
+        password: Yup.string()
+            .matches(
+                /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{6,}$/,
+                "Password must contain at least 6 characters, 1 symbol, and 1 uppercase"
+            )
+            .required("Password is required"),
+        confirmPassword: Yup.string()
+            .required("Confirm Password is required")
+            .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    });
+
 
     const formik = useFormik({
         initialValues: {
+            username: '',
             email: '',
+            phone: '',
+            password: '',
+            confirmPassword: '',
         },
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+        validationSchema: SignUpSchema,
+        onSubmit: (values) => {
+            register(values); // Pass the form values to the register function
         },
     });
 
@@ -52,33 +109,122 @@ const RegisterForm = () => {
                 margin={'auto'}
             >
                 <Stack spacing={4}>
-                    <FormControl id="username">
-                        <FormLabel>Username</FormLabel>
-                        <Input type="username" />
-                    </FormControl>
-                    <FormControl id="email">
-                        <FormLabel>Email address</FormLabel>
-                        <Input type="email" />
-                    </FormControl>
-                    <FormControl id="password">
-                        <FormLabel>Password</FormLabel>
-                        <Input type="password" />
-                    </FormControl>
-                    <HStack
-                        justify="auto"
-                    >
-                        <Button onClick={() => navigate(-1)}>Cancel</Button>
-                        <Spacer></Spacer>
-                        <Button
-                            bg={'blue.400'}
-                            color={'white'}
-                            _hover={{
-                                bg: 'blue.500',
-                            }}>
-                            Sign up
-                        </Button>
-                    </HStack>
+                    <form onSubmit={formik.handleSubmit}>
+                        <FormControl id="username"
+                            isRequired
+                            isInvalid={formik.touched.username && formik.errors.username}>
+                            <FormLabel>Username</FormLabel>
+                            <Input type="username"
+                                id='username'
+                                name='username'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.username}
+                            />
+                            {formik.touched.username && formik.errors.username && (
+                                <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
+                            )}
+                        </FormControl>
+
+                        <FormControl id="email"
+                            isRequired
+                            isInvalid={formik.touched.email && formik.errors.email}>
+                            <FormLabel>Email address</FormLabel>
+                            <Input type="email"
+                                id='email'
+                                name='email'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
+                            />
+                            {formik.touched.email && formik.errors.email && (
+                                <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+                            )}
+                        </FormControl>
+
+                        <FormControl id="phone"
+                            isRequired
+                            isInvalid={formik.touched.phone && formik.errors.phone}
+                        >
+                            <FormLabel>phone Number</FormLabel>
+                            <Input type="tel"
+                                id="phone"
+                                name="phone"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.phone}
+                            />
+                            {formik.touched.phone && formik.errors.phone && (
+                                <FormErrorMessage>{formik.errors.phone}</FormErrorMessage>
+                            )}
+                        </FormControl>
+
+                        <FormControl
+                            isRequired
+                            isInvalid={
+                                formik.touched.password &&
+                                formik.errors.password
+                            }
+                        >
+                            <FormLabel>Password</FormLabel>
+                            <Input id="password"
+                                name="password"
+                                type="password"
+                                placeholder="min. 6 chars, min. 1 uppercase and 1 symbol"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.password}
+                            />
+                            {formik.touched.password &&
+                                formik.errors.password && (
+                                    <FormErrorMessage>
+                                        {formik.errors.password}
+                                    </FormErrorMessage>
+                                )}
+                        </FormControl>
+
+                        <FormControl
+                            isRequired
+                            isInvalid={
+                                formik.touched.confirmPassword &&
+                                formik.errors.confirmPassword
+                            }
+                        >
+                            <FormLabel>Confirm Password</FormLabel>
+                            <Input id="confirmPassword"
+                                name="confirmPassword"
+                                type="password"
+                                placeholder='must be the same as password'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.confirmPassword}
+                            />
+                            {formik.touched.confirmPassword &&
+                                formik.errors.confirmPassword && (
+                                    <FormErrorMessage>
+                                        {formik.errors.confirmPassword}
+                                    </FormErrorMessage>
+                                )}
+                        </FormControl>
+
+                        <HStack
+                            justify="auto"
+                        >
+                            <Button onClick={() => navigate(-1)}>Cancel</Button>
+                            <Spacer></Spacer>
+                            <Button
+                                type='submit'
+                                bg={'blue.400'}
+                                color={'white'}
+                                _hover={{
+                                    bg: 'blue.500',
+                                }}>
+                                Sign up
+                            </Button>
+                        </HStack>
+                    </form>
                 </Stack>
+
             </Box >
         </Container >
     );

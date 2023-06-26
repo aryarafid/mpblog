@@ -60,7 +60,7 @@ const EditProfilePage = () => {
                         <FormLabel>Email address</FormLabel>
                         <Input type="email" />
                     </FormControl>
-                    <FormControl id="phonenumber">
+                    <FormControl id="phone">
                         <FormLabel>Phone Number</FormLabel>
                         <Input type="number" />
                     </FormControl>

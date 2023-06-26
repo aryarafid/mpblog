@@ -4,9 +4,20 @@ import { Box, Button, ButtonGroup, HStack, Spacer } from '@chakra-ui/react'
 import { ProfileButton } from './profile/ProfileButton';
 import { RegisterButton } from './profile/RegisterButton';
 import { LoginButton } from './profile/LoginButton';
+import { useDispatch } from "react-redux";
+import { logoutSuccess } from "../redux/reducer/AuthReducer";
+import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
-    const login = false;
+    const login = localStorage.getItem("token");
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(logoutSuccess(localStorage.token));
+        navigate("/");
+    };
 
     return (
         <>
@@ -14,23 +25,24 @@ const Navbar = () => {
                 <HStack>
                     <Logo></Logo>
                     <Spacer></Spacer>
-                    {/* {login === false ? */}
-                    {/* <ButtonGroup> */}
-                    {/* <Button>Sign In</Button> */}
-                    {/* <Button>Register</Button> */}
-                    {/* <LoginButton></LoginButton>
+                    {login ?
+                        <ButtonGroup>
+                            <ProfileButton></ProfileButton>
+                        </ButtonGroup>
+                        :
+                        <ButtonGroup>
+                            {/* <Button>Sign In</Button> */}
+                            {/* <Button>Register</Button> */}
+                            <LoginButton></LoginButton>
                             <RegisterButton></RegisterButton>
-                        </ButtonGroup> */}
-                    {/* : */}
+                        </ButtonGroup>
+
+                    }
                     {/* <ButtonGroup>
-                        <ProfileButton></ProfileButton>
-                    </ButtonGroup> */}
-                    {/* } */}
-                    <ButtonGroup>
                         <ProfileButton></ProfileButton>
                         <LoginButton></LoginButton>
                         <RegisterButton></RegisterButton>
-                    </ButtonGroup>
+                    </ButtonGroup> */}
 
                 </HStack>
             </Box >
