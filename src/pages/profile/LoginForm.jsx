@@ -26,16 +26,22 @@ import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import * as Yup from "yup";
-import { loginSuccess } from "../../redux/reducer/AuthReducer";
+import { login } from "../../redux/reducer/AuthReducer";
+
+// validation
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address format")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(7, "Password must be 7 characters minimum")
+    .max(15, "Password must be less than 16 character")
+    .required("Password is required"),
+});
 
 const LoginForm = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
-
-  // const [inputMode, setInputMode] = useState('username')
-  // const [inputValue, setInputValue] = useState('')
-
-  const navigate = useNavigate();
 
   // modal for forgot password
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -45,50 +51,12 @@ const LoginForm = () => {
 
   // reducer stuff
   const dispatch = useDispatch();
-
-  // login function api
-  const login = async (values) => {
-    try {
-      const { username, email, phone, password } = values;
-      const res = await axios.post(
-        "https://minpro-blog.purwadhikabootcamp.com/api/auth/login",
-        {
-          username: username,
-          email: email,
-          phone: phone,
-          password: password,
-        }
-      );
-      console.log(res);
-      if (res.status === 200) {
-        dispatch(loginSuccess(res.data.token));
-        navigate("/");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  // const handleInputModeChange = (event) => {
-  //     formik.setFieldValue('inputMode', event.target.value);
-  //     formik.setFieldValue('inputValue', '');
-  // };
-
-  // const handleInputModeChange = (event) => {
-  //     setInputMode(event.target.value);
-  //     setInputValue(''); // Clear input value when input mode changes
-  // };
-
-  // validation
-  const LoginSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email address format"),
-    password: Yup.string().required("Password is required"),
-  });
+  // navigate
+  const navigate = useNavigate();
 
   // formik
   const formik = useFormik({
     initialValues: {
-      // inputMode: "",
       username: "",
       email: "",
       phone: "",
@@ -96,9 +64,9 @@ const LoginForm = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: (values) => {
-    //   console.log(values);
-      login(values)
-      // navigate()
+      // console.log(values);
+      dispatch(login(values));
+      navigate("/");
     },
   });
 
@@ -144,12 +112,13 @@ const LoginForm = () => {
 
               {/* input */}
               <Input
+                id="email"
+                name="email"
                 type="email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                name="email"
-                placeholder="email"
+                placeholder="email/phone/username"
               />
 
               {/* eror message */}
