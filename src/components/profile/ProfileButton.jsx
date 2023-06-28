@@ -17,7 +17,13 @@ export const ProfileButton = () => {
       <Button onClick={() => navigate("/profile")} variant={"ghost"}>
         <HStack>
           <Text>{name}</Text>
-          <Avatar name={name} src={image} width={"50px"} height={"50px"} />
+          <Avatar
+            bg="gray"
+            name={name}
+            src={image}
+            width={"50px"}
+            height={"50px"}
+          />
         </HStack>
       </Button>
       {/* </a> */}

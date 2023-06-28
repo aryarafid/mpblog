@@ -22,7 +22,7 @@ import {
   Select,
   useStatStyles,
 } from "@chakra-ui/react";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import { Link, Routes, Route, useNavigate, redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import * as Yup from "yup";
@@ -67,6 +67,7 @@ const LoginForm = () => {
       // console.log(values);
       dispatch(login(values));
       navigate("/");
+      // redirect("/home");
     },
   });
 

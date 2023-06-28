@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { Redirect } from "react-router";
 
 const initialState = {
   user: {
@@ -48,6 +49,7 @@ export const AuthReducer = createSlice({
 });
 
 export const login = (data) => {
+  // Navigate = useNavigate();
   return async (dispatch) => {
     const { email, username, phone, password } = data;
 
@@ -65,8 +67,9 @@ export const login = (data) => {
     localStorage.setItem("token", token);
     dispatch(loginSuccess());
     dispatch(setUser(res.data.isAccountExist));
+    // <Redirect to="/" />;
     // Navigate
-    // navigate("/");
+    // Navigate("/");
   };
 };
 

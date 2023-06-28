@@ -36,7 +36,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import * as Yup from "yup";
 
-export const EditProfileFunc = () => {
+export const EditEmail = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -100,36 +100,29 @@ export const EditProfileFunc = () => {
 
   return (
     <div>
-      <Button onClick={onOpen}>Edit Profil</Button>
+      <Button onClick={onOpen}>Edit Email</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Edit Profil</ModalHeader>
+          <ModalHeader>Edit Email</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {/* <Lorem count={2} /> */}
-            {/* <EditProfileFunction></EditProfileFunction> */}
-
-            <FormControl id="username">
-              <FormLabel>Username</FormLabel>
-              <Input type="username" value={name} />
+            <FormControl id="Email">
+              <FormLabel>Current Email</FormLabel>
+              <Input type="Email" value={name} />
             </FormControl>
             <FormControl id="email">
-              <FormLabel>Email</FormLabel>
+              <FormLabel>New Email</FormLabel>
               <Input type="email" value={email} />
-            </FormControl>
-            <FormControl id="phone">
-              <FormLabel>Phone number</FormLabel>
-              <Input type="phone" value={phone} />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button colorScheme="blue">Confirm</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -137,4 +130,4 @@ export const EditProfileFunc = () => {
   );
 };
 
-export default EditProfileFunc;
+export default EditEmail;

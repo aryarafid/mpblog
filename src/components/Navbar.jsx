@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "./Logo";
 import { Box, Button, ButtonGroup, HStack, Spacer } from "@chakra-ui/react";
 import { ProfileButton } from "./profile/ProfileButton";
 import { RegisterButton } from "./profile/RegisterButton";
 import { LoginButton } from "./profile/LoginButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutSuccess } from "../redux/reducer/AuthReducer";
 import { useNavigate } from "react-router-dom";
 import LogOutButton from "./profile/LogOutButton";
 
 const Navbar = () => {
-  const login = localStorage.getItem("token");
+  // const login = localStorage.getItem("token");
+  const login = useSelector((state) => state.AuthReducer.login);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
