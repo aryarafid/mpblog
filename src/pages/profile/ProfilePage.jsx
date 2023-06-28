@@ -29,9 +29,9 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EditUsername from "../../components/profile/EditUsername";
-import EditEmail from "../../components/profile/EditEmail";
 import EditPhone from "../../components/profile/EditPhone";
 import ChangePassword from "../../components/profile/ChangePassword";
+import EditEmail from "../../components/profile/EditEmail";
 
 const ProfilePage = () => {
   const personData = useSelector((state) => state.AuthReducer.user);

@@ -7,6 +7,7 @@ const Auth = ({ children }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.AuthReducer);
   console.log(user);
+  
   useEffect(() => {
     dispatch(keepLogin());
   }, [dispatch]);

@@ -16,7 +16,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import React from "react";
-import { useFormik } from "formik";
+import { Field, useFormik } from "formik";
 import {
   FormControl,
   FormLabel,
@@ -39,26 +39,31 @@ import * as Yup from "yup";
 export const EditEmail = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+  const navigate = useNavigate();
 
   const personData = useSelector((state) => state.AuthReducer.user);
-  const name = personData.username;
-  const email = personData.email;
-  const phone = personData.phone;
-  // const image = personData.imgProfile;
+  // const currentUsername = personData.username;
 
-  const editProfile = async (values) => {
+  const editEmail = async (values) => {
     try {
-      const res = await axios.post(
-        "https://minpro-blog.purwadhikabootcamp.com/api/auth/",
+      const token = localStorage.getItem("token");
+
+      const res = await axios.patch(
+        "https://minpro-blog.purwadhikabootcamp.com/api/auth/changeEmail",
         {
-          username: values.username,
-          email: values.email,
-          phone: values.phone,
+          currentEmail: personData.email,
+          newEmail: values.newEmail,
           FE_URL: "http://localhost:3000",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
+      console.log(res);
       toast({
-        title: "Register Success",
+        title: "Success. Check your email to verify the change",
         status: "success",
         duration: "2000",
         isClosable: true,
@@ -74,27 +79,29 @@ export const EditEmail = () => {
     }
   };
 
-  const SignUpSchema = Yup.object().shape({
-    username: Yup.string(),
-    // required("Username is required"),
-    email: Yup.string().email("Invalid email address format"),
-    // .required("Email is required"),
-    phone: Yup.string().matches(
-      /^[0-9]+$/,
-      "Phone number must contain only digits"
-    ),
-    // .required("Phone number is required"),
+  const EditEmailSchema = Yup.object().shape({
+    // currentUsername: Yup.string().required("Username is required"),
+    // newEmail: Yup.string().required("Username is required"
+    newEmail: Yup.string()
+      .email("Invalid email address format")
+      .required("Email is required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      username: "",
-      email: "",
-      phone: "",
+      currentEmail: personData.email,
+      newEmail: "",
     },
-    validationSchema: SignUpSchema,
+    validationSchema: EditEmailSchema,
     onSubmit: (values) => {
-      editProfile(values); // Pass the form values to the register function
+      // let obj = { currentUsername: currentUsername };
+      // let obj2 = {values.newUsername}
+      // console.log(obj);
+      // const [lol, newUsername] = values;
+      // values = { ...obj, values };
+      // console.log(values);
+
+      editEmail(values); // Pass the form values to the register function
     },
   });
 
@@ -107,23 +114,47 @@ export const EditEmail = () => {
         <ModalContent>
           <ModalHeader>Edit Email</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <FormControl id="Email">
-              <FormLabel>Current Email</FormLabel>
-              <Input type="Email" value={name} />
-            </FormControl>
-            <FormControl id="email">
-              <FormLabel>New Email</FormLabel>
-              <Input type="email" value={email} />
-            </FormControl>
-          </ModalBody>
 
-          <ModalFooter>
-            <Button mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button colorScheme="blue">Confirm</Button>
-          </ModalFooter>
+          <form onSubmit={formik.handleSubmit}>
+            <ModalBody>
+              <FormControl
+                id="currentEmail"
+                isInvalid={
+                  formik.touched.currentEmail && formik.errors.currentEmail
+                }
+              >
+                <FormLabel>
+                  Current Email: <Text as="b">{personData.email}</Text>
+                </FormLabel>
+              </FormControl>
+
+              {/* new user */}
+              <FormControl
+                id="newEmail"
+                isRequired
+                isInvalid={formik.touched.newEmail && formik.errors.newEmail}
+              >
+                <FormLabel>New Email</FormLabel>
+                <Input
+                  type="text"
+                  name="newEmail"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.newEmail}
+                  // disabled
+                />
+              </FormControl>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button colorScheme="blue" type="submit">
+                Confirm
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </div>

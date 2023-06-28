@@ -115,23 +115,14 @@ export const EditUsername = () => {
             <ModalBody>
               <FormControl
                 id="currentUsername"
-                isRequired
                 isInvalid={
                   formik.touched.currentUsername &&
                   formik.errors.currentUsername
                 }
               >
-                <FormLabel>Current Username: {personData.username}</FormLabel>
-                {/* <Input
-                  type="text"
-                  name="currentUsername"
-                  defaultValue={formik.values.currentUsername}
-                  // value={formik.values.currentUsername}
-                  // variant={"filled"}
-                  onChange={formik.handleChange}
-                  readOnly={true}
-                  onBlur={formik.handleBlur}
-                /> */}
+                <FormLabel>
+                  Current Username: <Text as="b">{personData.username}</Text>
+                </FormLabel>
               </FormControl>
 
               {/* new user */}

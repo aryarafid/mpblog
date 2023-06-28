@@ -21,6 +21,7 @@ import {
   InputGroup,
   Select,
   useStatStyles,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { Link, Routes, Route, useNavigate, redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -133,7 +134,7 @@ const LoginForm = () => {
               isInvalid={formik.touched.password && formik.errors.password}
             >
               <FormLabel mt={4}>Password</FormLabel>
-              <Input
+              {/* <Input
                 id="password"
                 name="password"
                 type="password"
@@ -146,7 +147,26 @@ const LoginForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-              />
+              /> */}
+
+              <InputGroup size="md">
+                <Input
+                  id="password"
+                  name="password"
+                  pr="4.5rem"
+                  type={show ? "text" : "password"}
+                  placeholder="Enter password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+
               {formik.touched.password && formik.errors.password && (
                 <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
               )}

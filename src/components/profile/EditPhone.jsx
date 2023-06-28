@@ -50,7 +50,7 @@ export const EditPhone = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.post(
+      const res = await axios.patch(
         "https://minpro-blog.purwadhikabootcamp.com/api/auth/changePhone",
         {
           currentPhone: personData.phone,
@@ -100,7 +100,8 @@ export const EditPhone = () => {
     },
     validationSchema: EditPhoneSchema,
     onSubmit: (values) => {
-      editPhone(values); // Pass the form values to the register function
+      console.log(values);
+      // editPhone(values); // Pass the form values to the register function
     },
   });
 
@@ -115,13 +116,32 @@ export const EditPhone = () => {
           <ModalCloseButton />
           <form onSubmit={formik.handleSubmit}>
             <ModalBody>
-              <FormControl id="Phone Number">
-                <FormLabel>Current Phone Number</FormLabel>
-                <Input type="Phone Number" value={name} />
+              <FormControl
+                id="currentPhone"
+                isInvalid={
+                  formik.touched.currentPhone && formik.errors.currentPhone
+                }
+              >
+                <FormLabel>
+                  Current Phone Number: <Text as="b">{personData.phone}</Text>
+                </FormLabel>
               </FormControl>
-              <FormControl id="Phone Number">
+
+              {/* new user */}
+              <FormControl
+                id="newPhone"
+                isRequired
+                isInvalid={formik.touched.newPhone && formik.errors.newPhone}
+              >
                 <FormLabel>New Phone Number</FormLabel>
-                <Input type="Phone Number" value={email} />
+                <Input
+                  type="text"
+                  name="newPhone"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.newPhone}
+                  // disabled
+                />
               </FormControl>
             </ModalBody>
 
@@ -129,7 +149,9 @@ export const EditPhone = () => {
               <Button mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button colorScheme="blue">Confirm</Button>
+              <Button colorScheme="blue" type="submit">
+                Confirm
+              </Button>
             </ModalFooter>
           </form>
         </ModalContent>

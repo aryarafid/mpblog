@@ -17,6 +17,8 @@ import {
   Text,
   Spacer,
   useToast,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -25,6 +27,9 @@ import * as Yup from "yup";
 const RegisterForm = () => {
   const toast = useToast();
   const navigate = useNavigate();
+
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
 
   const register = async (values) => {
     try {
@@ -86,6 +91,7 @@ const RegisterForm = () => {
     validationSchema: SignUpSchema,
     onSubmit: (values) => {
       register(values); // Pass the form values to the register function
+      navigate("/home");
     },
   });
 
@@ -101,7 +107,7 @@ const RegisterForm = () => {
         bg={useColorModeValue("white", "gray.700")}
         boxShadow={"lg"}
         p={8}
-        w={"90%"}
+        // w={"90%"}
         margin={"auto"}
       >
         <Stack spacing={4}>
@@ -168,7 +174,7 @@ const RegisterForm = () => {
               isInvalid={formik.touched.password && formik.errors.password}
             >
               <FormLabel>Password</FormLabel>
-              <Input
+              {/* <Input
                 id="password"
                 name="password"
                 type="password"
@@ -176,7 +182,25 @@ const RegisterForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-              />
+              /> */}
+              <InputGroup size="md">
+                <Input
+                  id="password"
+                  name="password"
+                  pr="4.5rem"
+                  type={show ? "text" : "password"}
+                  placeholder="min. 6 chars, min. 1 uppercase and 1 symbol"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+
               {formik.touched.password && formik.errors.password && (
                 <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
               )}
@@ -189,7 +213,7 @@ const RegisterForm = () => {
               }
             >
               <FormLabel>Confirm Password</FormLabel>
-              <Input
+              {/* <Input
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
@@ -197,7 +221,26 @@ const RegisterForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.confirmPassword}
-              />
+              /> */}
+
+              <InputGroup size="md">
+                <Input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  pr="4.5rem"
+                  type={show ? "text" : "password"}
+                  placeholder="Must be the same as password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.confirmPassword}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+
               {formik.touched.confirmPassword &&
                 formik.errors.confirmPassword && (
                   <FormErrorMessage>

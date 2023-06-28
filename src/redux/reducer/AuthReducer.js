@@ -78,17 +78,22 @@ export const keepLogin = () => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const res = await axios.get(
-        "https://minpro-blog.purwadhikabootcamp.com/api/auth/",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(setUser(res.data));
-      dispatch(setUser(res.data));
-      dispatch(keepLoginSuccess());
+      try {
+        const res = await axios.get(
+          "https://minpro-blog.purwadhikabootcamp.com/api/auth/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(setUser(res.data));
+        console.log("i am keeplogin");
+        dispatch(setUser(res.data));
+        dispatch(keepLoginSuccess());
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 };
