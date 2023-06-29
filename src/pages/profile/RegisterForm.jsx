@@ -91,7 +91,7 @@ const RegisterForm = () => {
     validationSchema: SignUpSchema,
     onSubmit: (values) => {
       register(values); // Pass the form values to the register function
-      navigate("/home");
+      navigate("//");
     },
   });
 

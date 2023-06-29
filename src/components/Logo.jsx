@@ -6,16 +6,17 @@ const Logo = () => {
   const navigate = useNavigate();
   return (
     <>
-      <a href="/">
-        {/* <Button variant='link'> */}
-        {/* <Link onClick={() => navigate("/")}> */}
+      {/* <a href="/"> */}
+      {/* <Button variant='link'> */}
+      {/* <Link onClick={() => navigate("/")}> */}
+      <Link to={"/"}>
         <HStack>
           <Image src="/mpb.svg" w={"3em"}></Image>
           <Text as={"b"}>MPBlog</Text>
         </HStack>
-        {/* </Link> */}
-        {/* </Button> */}
-      </a>
+      </Link>
+      {/* </Button> */}
+      {/* </a> */}
     </>
   );
 };

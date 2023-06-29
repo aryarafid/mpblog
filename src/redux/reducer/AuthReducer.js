@@ -52,21 +52,25 @@ export const login = (data) => {
   // Navigate = useNavigate();
   return async (dispatch) => {
     const { email, username, phone, password } = data;
+    try {
+      const res = await axios.post(
+        "https://minpro-blog.purwadhikabootcamp.com/api/auth/login",
+        {
+          username: username,
+          email: email,
+          phone: phone,
+          password: password,
+        }
+      );
+      const token = res.data.token;
+      localStorage.setItem("token", token);
+      dispatch(loginSuccess());
+      dispatch(setUser(res.data.isAccountExist));
+    } catch (error) {
+      alert(`${error}. Please try again`);
+      console.log(error);
+    }
 
-    const res = await axios.post(
-      "https://minpro-blog.purwadhikabootcamp.com/api/auth/login",
-      {
-        username: username,
-        email: email,
-        phone: phone,
-        password: password,
-      }
-    );
-
-    const token = res.data.token;
-    localStorage.setItem("token", token);
-    dispatch(loginSuccess());
-    dispatch(setUser(res.data.isAccountExist));
     // <Redirect to="/" />;
     // Navigate
     // Navigate("/");

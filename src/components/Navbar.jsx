@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutSuccess } from "../redux/reducer/AuthReducer";
 import { useNavigate } from "react-router-dom";
 import LogOutButton from "./profile/LogOutButton";
+import WriteBlogButton from "./profile/WriteBlogButton";
 
 const Navbar = () => {
   // const login = localStorage.getItem("token");
@@ -28,6 +29,7 @@ const Navbar = () => {
           <Spacer></Spacer>
           {login ? (
             <ButtonGroup>
+              <WriteBlogButton></WriteBlogButton>
               <ProfileButton></ProfileButton>
               <LogOutButton></LogOutButton>
             </ButtonGroup>

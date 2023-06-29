@@ -49,7 +49,9 @@ function VerifyChange() {
         duration: 7000,
         isClosable: true,
       });
-      navigate("/profile");
+      // navigate("/profile");
+      document.location.href = "/";
+
       // }
     } catch (err) {
       toast({

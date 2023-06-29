@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import {
   Box,
   Heading,
-  Link,
+  // Link,
   Image,
   Text,
   Divider,
@@ -23,6 +23,7 @@ import {
   LinkOverlay,
   Avatar,
 } from "@chakra-ui/react";
+import { useNavigate, Link } from "react-router-dom";
 
 const BlogTags = (props) => {
   return (
@@ -58,18 +59,24 @@ const BlogAuthor = (props) => {
 
 export default function SimpleSlider() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   const fetchForSlider = async () => {
     try {
       const { data } = await axios.get(
         "https://minpro-blog.purwadhikabootcamp.com/api/blog?sort=ASC&page=1"
       );
-      console.log(data.result);
-      setData(data.result);
+      const dataFix = data.result;
+      console.log(dataFix);
+      setData(dataFix);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const bb = 0;
+  // const dataOne = data.result.find((o) => o.id === bb);
+  // console.log(dataOne);
 
   useEffect(() => {
     fetchForSlider();
@@ -90,78 +97,75 @@ export default function SimpleSlider() {
       <Slider {...settings}>
         {/* iterate image here */}
         {data.map((iter) => (
-          <LinkBox
-            _hover={{
-              transform: "scale(1.05)",
-            }}
-          >
-            <div>
-              <Box
-                marginTop={{ base: "1", sm: "5" }}
-                display="flex"
-                flexDirection={{ base: "column", sm: "row" }}
-                justifyContent="space-between"
-                alignItems={"center"}
+          <Link to={`/blog/${iter.id}`} state={{ data }}>
+            <LinkBox
+              _hover={{
+                transform: "scale(1.05)",
+              }}
+            >
+              <LinkOverlay
+                textDecoration="none"
+                _hover={{ textDecoration: "none" }}
+                onClick={() => navigate(`/blog/${iter.id}`)}
               >
                 <Box
+                  marginTop={{ base: "1", sm: "5" }}
                   display="flex"
-                  flex="1"
-                  marginRight="3"
-                  //   position="relative"
-                  alignSelf={"center"}
+                  flexDirection={{ base: "column", sm: "row" }}
+                  justifyContent="space-between"
+                  alignItems={"center"}
                 >
-                  {/* IMAGE */}
                   <Box
-                    // width={{ base: "100%", sm: "85%" }}
-                    width="85%"
-                    zIndex="2"
-                    marginLeft={{ base: "0", sm: "5%" }}
-                    marginTop="5%"
+                    display="flex"
+                    flex="1"
+                    marginRight="3"
+                    //   position="relative"
+                    alignSelf={"center"}
                   >
-                    {/* <Link textDecoration="none" _hover={{ textDecoration: 'none' }}> */}
-                    <Image
-                      borderRadius="lg"
-                      src={`https://minpro-blog.purwadhikabootcamp.com/${iter.imageURL}`}
-                      objectFit="cover"
-                      //   maxH="500px"
+                    {/* IMAGE */}
+                    <Box
+                      // width={{ base: "100%", sm: "85%" }}
+                      width="85%"
+                      zIndex="2"
+                      marginLeft={{ base: "0", sm: "5%" }}
+                      marginTop="5%"
+                    >
+                      {/* <Link textDecoration="none" _hover={{ textDecoration: 'none' }}> */}
+                      <Image
+                        borderRadius="lg"
+                        src={`https://minpro-blog.purwadhikabootcamp.com/${iter.imageURL}`}
+                        objectFit="cover"
+                        //   maxH="500px"
+                      />
+                      {/* </Link> */}
+                    </Box>
+                  </Box>
+
+                  <Box
+                    display="flex"
+                    flex="1"
+                    flexDirection="column"
+                    justifyContent="center"
+                    marginTop={{ base: "3", sm: "0" }}
+                  >
+                    <BlogTags tags={[iter.Category.name]} />
+                    <Heading marginTop="1">{iter.title}</Heading>
+                    <Text as="p" marginTop="2" fontSize="lg" noOfLines={2}>
+                      {iter.content}
+                    </Text>
+                    <BlogAuthor
+                      name={iter.User.username}
+                      date={iter.updatedAt}
+                      // imgProfile={iter.User.imgProfile}
+                      imgProfile={`https://minpro-blog.purwadhikabootcamp.com/${iter.User.imgProfile}`}
                     />
-                    {/* </Link> */}
                   </Box>
                 </Box>
-
-                <Box
-                  display="flex"
-                  flex="1"
-                  flexDirection="column"
-                  justifyContent="center"
-                  marginTop={{ base: "3", sm: "0" }}
-                >
-                  <BlogTags tags={[iter.Category.name]} />
-                  <Heading marginTop="1">
-                    <LinkOverlay
-                      textDecoration="none"
-                      _hover={{ textDecoration: "none" }}
-                    >
-                      {iter.title}
-                    </LinkOverlay>
-                  </Heading>
-                  <Text as="p" marginTop="2" fontSize="lg" noOfLines={2}>
-                    {iter.content}
-                  </Text>
-                  <BlogAuthor
-                    name={iter.User.username}
-                    date={iter.updatedAt}
-                    // imgProfile={iter.User.imgProfile}
-                    imgProfile={`https://minpro-blog.purwadhikabootcamp.com/${iter.User.imgProfile}`}
-                  />
-                </Box>
-              </Box>
-              {/* </Link> */}
-            </div>
-          </LinkBox>
+                {/* </Link> */}
+              </LinkOverlay>
+            </LinkBox>
+          </Link>
         ))}
-
-        {/* {[...arraydiv]} */}
       </Slider>
     </>
   );
