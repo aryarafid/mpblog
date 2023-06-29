@@ -72,7 +72,7 @@ const RegisterForm = () => {
     password: Yup.string()
       .matches(
         /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{6,}$/,
-        "at least 6 characters, 1number, 1 symbol, 1 uppercase"
+        "at least 6 characters, 1 number, 1 symbol, 1 uppercase"
       )
       .required("Password is required"),
     confirmPassword: Yup.string()
