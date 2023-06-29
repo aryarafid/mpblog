@@ -9,7 +9,7 @@ export const WriteBlogButton = () => {
   return (
     <div>
       {/* <a href='login'> */}
-      <Button onClick={() => navigate("write")} gap={3}>
+      <Button onClick={() => navigate("/write")} gap={3}>
         Write Blog
         <FaPencilAlt />
       </Button>

@@ -72,7 +72,7 @@ const RegisterForm = () => {
     password: Yup.string()
       .matches(
         /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{6,}$/,
-        "Password must contain at least 6 characters, 1 symbol, and 1 uppercase"
+        "at least 6 characters, 1number, 1 symbol, 1 uppercase"
       )
       .required("Password is required"),
     confirmPassword: Yup.string()
@@ -91,7 +91,7 @@ const RegisterForm = () => {
     validationSchema: SignUpSchema,
     onSubmit: (values) => {
       register(values); // Pass the form values to the register function
-      navigate("//");
+      navigate("/");
     },
   });
 

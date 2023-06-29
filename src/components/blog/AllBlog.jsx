@@ -19,6 +19,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
+import { useNavigate } from "react-router-dom";
 
 const BlogTags = (props) => {
   return (
@@ -53,6 +54,7 @@ const BlogAuthor = (props) => {
 
 const AllBlog = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   const fetchAllBlog = async () => {
     try {
@@ -86,42 +88,40 @@ const AllBlog = () => {
                   _hover={{ transform: "scale(1.05)" }}
                   key={iter.id}
                 >
-                  <HStack spacing={10}>
-                    {/* image */}
-                    <Box borderRadius="lg" overflow="hidden">
-                      <Image
-                        transform="scale(1.0)"
-                        src={`https://minpro-blog.purwadhikabootcamp.com/${iter.imageURL}`}
-                        alt="some text"
-                        // objectFit="contain"
-                        // width="100%"
-                        width={"100px"}
-                        transition="0.3s ease-in-out"
-                      />
-                    </Box>
+                  <LinkOverlay onClick={() => navigate(`/blog/${iter.id}`)}>
+                    <HStack spacing={10}>
+                      {/* image */}
+                      <Box borderRadius="lg" overflow="hidden">
+                        <Image
+                          transform="scale(1.0)"
+                          src={`https://minpro-blog.purwadhikabootcamp.com/${iter.imageURL}`}
+                          alt="some text"
+                          // objectFit="contain"
+                          // width="100%"
+                          width={"100px"}
+                          transition="0.3s ease-in-out"
+                        />
+                      </Box>
 
-                    {/* text */}
-                    <Box>
-                      <BlogTags tags={[iter.Category.name]} marginTop="3" />
-                      <LinkOverlay
-                      // href={iter.id}
-                      >
+                      {/* text */}
+                      <Box>
+                        <BlogTags tags={[iter.Category.name]} marginTop="3" />
+
                         <Heading fontSize="xl" marginTop="2">
                           {iter.title}
                         </Heading>
-                      </LinkOverlay>
-                      <Text as="p" fontSize="md" marginTop="2" noOfLines={2}>
-                        {iter.content}
-                      </Text>
-                      <BlogAuthor
-                        name={iter.User.username}
-                        date={iter.updatedAt}
-                        // imgProfile={iter.User.imgProfile}
-                        imgProfile={`https://minpro-blog.purwadhikabootcamp.com/${iter.User.imgProfile}`}
-                      />
-                    </Box>
-                  </HStack>
-
+                        <Text as="p" fontSize="md" marginTop="2" noOfLines={2}>
+                          {iter.content}
+                        </Text>
+                        <BlogAuthor
+                          name={iter.User.username}
+                          date={iter.updatedAt}
+                          // imgProfile={iter.User.imgProfile}
+                          imgProfile={`https://minpro-blog.purwadhikabootcamp.com/${iter.User.imgProfile}`}
+                        />
+                      </Box>
+                    </HStack>
+                  </LinkOverlay>
                   {/* </Box> */}
                 </LinkBox>
               </WrapItem>
