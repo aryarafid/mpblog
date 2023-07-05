@@ -18,15 +18,15 @@ function App() {
       <Auth>
         <BrowserRouter>
           <Routes>
-            <Route path="/" exact element={<Home />} />
+            <Route path="/" element={<Home />} />
             {/* <Route path="/home" element={<Home />} /> */}
             {/* <Route path="/" element={<Navigate to="/home" replace />} /> */}
-            <Route exact path="write" element={<CreateBlog />} />
-            <Route exact path="profile" element={<ProfilePage />} />
-            <Route exact path="register" element={<RegisterForm />} />
-            <Route exact path="login" element={<LoginForm />} />
-            <Route exact path="changePassword" element={<ChangePassword />} />
-            <Route exact path="editProfile" element={<EditProfilePage />} />
+            <Route path="write" element={<CreateBlog />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="register" element={<RegisterForm />} />
+            <Route path="login" element={<LoginForm />} />
+            <Route path="changePassword" element={<ChangePassword />} />
+            <Route path="editProfile" element={<EditProfilePage />} />
             <Route path="/verification/:token" element={<VerifyAccount />} />
             <Route
               path="/verification-change-email/:token"
